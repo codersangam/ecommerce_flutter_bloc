@@ -5,10 +5,33 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: VxAppBar(
-        title: "Ecommerce Flutter".text.make(),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            HeroCarouselCard(),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class HeroCarouselCard extends StatelessWidget {
+  const HeroCarouselCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return VxSwiper.builder(
+      itemCount: Category.categories.length,
+      itemBuilder: (context, index) {
+        return Image.network(
+          Category.categories[index].imageUrl!,
+          fit: BoxFit.cover,
+        );
+      },
     );
   }
 }
