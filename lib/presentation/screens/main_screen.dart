@@ -68,5 +68,3 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-
-enum _SelectedTab { home, favorite, search, person }
