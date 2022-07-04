@@ -1,9 +1,9 @@
 part of 'widgets_imports.dart';
 
 class ProductsCard extends StatelessWidget {
-  const ProductsCard({Key? key, required this.product}) : super(key: key);
+  const ProductsCard({Key? key, required this.products}) : super(key: key);
 
-  final Product product;
+  final Product products;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ProductsCard extends StatelessWidget {
           Stack(
             children: [
               Image.network(
-                product.imageUrl.toString(),
+                products.imageUrl.toString(),
                 fit: BoxFit.cover,
                 height: 175,
                 width: MediaQuery.of(context).size.width,
@@ -34,11 +34,25 @@ class ProductsCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              "${product.name}".text.bold.make(),
+              5.heightBox,
+              products.name.text.bold.make(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  "\$ ${product.price}".text.bold.make(),
+                  RichText(
+                    text: TextSpan(
+                      text: '\$ ',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.orange),
+                      children: [
+                        TextSpan(
+                            text: products.price,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+                      ],
+                    ),
+                  ),
                   IconButton(
                     onPressed: () {},
                     icon:
@@ -54,7 +68,6 @@ class ProductsCard extends StatelessWidget {
         .make()
         .cornerRadius(10)
         .backgroundColor(Colors.white)
-        .wh(MediaQuery.of(context).size.width / 1.8, 250)
-        .pSymmetric(h: 15);
+        .wh(MediaQuery.of(context).size.width / 1.8, 250);
   }
 }

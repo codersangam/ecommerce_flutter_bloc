@@ -59,7 +59,7 @@ class _HeroCarouselCardState extends State<HeroCarouselCard> {
           activeIndex: yourActiveIndex,
           count: Category.categories.length,
           effect: const WormEffect(
-            activeDotColor: Colors.purpleAccent,
+            activeDotColor: Colors.orange,
           ),
         )
       ],
