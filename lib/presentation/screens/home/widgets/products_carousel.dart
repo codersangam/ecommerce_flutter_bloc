@@ -18,8 +18,8 @@ class ProductsCarousel extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (context, index) {
           return ProductsCard(
-            product: products[index],
-          );
+            products: products[index],
+          ).pOnly(right: 15);
         },
       ),
     );

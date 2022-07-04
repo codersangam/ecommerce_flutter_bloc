@@ -32,18 +32,20 @@ class _MainScreenState extends State<MainScreen> {
       ),
       extendBody: true,
       bottomNavigationBar: DotNavigationBar(
+        itemPadding: const EdgeInsets.symmetric(vertical: 0),
+        margin: const EdgeInsets.all(0),
         currentIndex: _selectedIndex,
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
           });
         },
-        dotIndicatorColor: Colors.black,
+        dotIndicatorColor: Colors.transparent,
         items: [
           /// Home
           DotNavigationBarItem(
             icon: const Icon(LineIcons.home),
-            selectedColor: Colors.purple,
+            selectedColor: Colors.orange,
           ),
 
           /// Likes
@@ -55,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
           /// Search
           DotNavigationBarItem(
             icon: const Icon(LineIcons.search),
-            selectedColor: Colors.orange,
+            selectedColor: Colors.purple,
           ),
 
           /// Profile
