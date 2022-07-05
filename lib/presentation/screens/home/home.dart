@@ -68,18 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               5.heightBox,
-              VxBox(
-                child: "Fast Food".text.bold.make().pOnly(top: 10, left: 15),
-              )
-                  .make()
-                  .backgroundColor(Colors.green.withOpacity(0.1))
-                  .cornerRadius(20)
-                  .wh(170, 100),
+              CategoryCarousel(
+                categories: Category.categories.map((e) => e).toList(),
+                color: Colors.blue,
+              ),
               20.heightBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  "Popular Products".text.bold.xl2.make(),
+                  "Most Popular".text.bold.xl2.make(),
                   "See All".text.bold.orange500.make(),
                 ],
               ),
@@ -93,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  "Recommended Products".text.bold.xl2.make(),
+                  "Recommended".text.bold.xl2.make(),
                   "See All".text.bold.orange500.make(),
                 ],
               ),
@@ -108,5 +105,59 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+}
+
+class CategoryCarousel extends StatelessWidget {
+  const CategoryCarousel(
+      {Key? key, required this.categories, required this.color})
+      : super(key: key);
+  final List<Category> categories;
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          return CategoryCard(
+            categories: categories[index],
+            color: color,
+          ).pOnly(right: 15);
+        },
+      ),
+    );
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({Key? key, required this.categories, required this.color})
+      : super(key: key);
+
+  final Category categories;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return VxBox(
+      child: Stack(
+        children: [
+          categories.name!.text.bold.make().pOnly(top: 10, left: 15),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Image.asset(
+              categories.imageUrl.toString(),
+            ),
+          ),
+        ],
+      ),
+    )
+        .make()
+        .backgroundColor(color.withOpacity(0.1))
+        .cornerRadius(20)
+        .wh(170, 100);
   }
 }
