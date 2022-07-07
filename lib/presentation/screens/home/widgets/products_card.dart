@@ -1,9 +1,11 @@
 part of 'widgets_imports.dart';
 
 class ProductsCard extends StatelessWidget {
-  const ProductsCard({Key? key, required this.products}) : super(key: key);
+  const ProductsCard({Key? key, required this.products, this.widthFactor = 1.8})
+      : super(key: key);
 
   final Product products;
+  final double widthFactor;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +70,6 @@ class ProductsCard extends StatelessWidget {
         .make()
         .cornerRadius(10)
         .backgroundColor(Colors.white)
-        .wh(MediaQuery.of(context).size.width / 1.8, 250);
+        .wh(MediaQuery.of(context).size.width / widthFactor, 250);
   }
 }
