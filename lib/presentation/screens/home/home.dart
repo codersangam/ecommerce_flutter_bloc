@@ -21,7 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   "Hello Sangam 👋".text.bold.size(24).make(),
-                  LineIcon.search(),
+                  Image.asset(
+                    "assets/icons/search.png",
+                    height: 20,
+                    width: 20,
+                  ),
                 ],
               ),
               "It's lunch time!".text.make(),
@@ -70,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
               5.heightBox,
               CategoryCarousel(
                 categories: Category.categories.map((e) => e).toList(),
-                color: Colors.blue,
+                // color: Colors.blue,
               ),
               20.heightBox,
               Row(
@@ -104,65 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ).pSymmetric(h: 15),
         ),
       ),
-    );
-  }
-}
-
-class CategoryCarousel extends StatelessWidget {
-  const CategoryCarousel(
-      {Key? key, required this.categories, required this.color})
-      : super(key: key);
-  final List<Category> categories;
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          return CategoryCard(
-            categories: categories[index],
-            color: color,
-          ).pOnly(right: 15);
-        },
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatelessWidget {
-  const CategoryCard({Key? key, required this.categories, required this.color})
-      : super(key: key);
-
-  final Category categories;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        AutoRouter.of(context).push(CategoryScreenRoute(category: categories));
-      },
-      child: VxBox(
-        child: Stack(
-          children: [
-            categories.name!.text.bold.make().pOnly(top: 10, left: 15),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Image.asset(
-                categories.imageUrl.toString(),
-              ),
-            ),
-          ],
-        ),
-      )
-          .make()
-          .backgroundColor(color.withOpacity(0.1))
-          .cornerRadius(20)
-          .wh(170, 100),
     );
   }
 }
