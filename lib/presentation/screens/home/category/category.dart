@@ -15,7 +15,7 @@ class CategoryScreen extends StatelessWidget {
         elevation: 0.0,
         searchBar: true,
         centerTitle: true,
-        backgroundColor: Colors.orange.withOpacity(0.3),
+        backgroundColor: category.colorName!.withOpacity(0.3),
         title: '${category.name}'.text.make(),
       ),
       body: GridView.builder(

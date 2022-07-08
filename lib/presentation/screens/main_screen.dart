@@ -32,8 +32,6 @@ class _MainScreenState extends State<MainScreen> {
       ),
       extendBody: true,
       bottomNavigationBar: DotNavigationBar(
-        itemPadding: const EdgeInsets.symmetric(vertical: 0),
-        margin: const EdgeInsets.all(0),
         currentIndex: _selectedIndex,
         onTap: (index) {
           setState(() {
