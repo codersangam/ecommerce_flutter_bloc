@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Ecommerce Flutter Bloc',
       theme: ThemeData(
-        fontFamily: GoogleFonts.poppins().fontFamily,
+        fontFamily: GoogleFonts.outfit().fontFamily,
         primarySwatch: Colors.blue,
       ),
       routerDelegate: _appRouter.delegate(),
