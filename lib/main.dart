@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'blocs/wishlist/bloc/wish_list_bloc.dart';
 import 'router/router_imports.gr.dart';
 
 void main() {
@@ -12,14 +14,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Ecommerce Flutter Bloc',
-      theme: ThemeData(
-        fontFamily: GoogleFonts.outfit().fontFamily,
-        primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => WishListBloc()..add(StartWishListEvent()),
+        )
+      ],
+      child: MaterialApp.router(
+        title: 'Ecommerce Flutter Bloc',
+        theme: ThemeData(
+          fontFamily: GoogleFonts.outfit().fontFamily,
+          primarySwatch: Colors.blue,
+        ),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
       ),
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }
