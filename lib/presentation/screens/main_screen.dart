@@ -1,11 +1,10 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:ecommerce_flutter_bloc/presentation/screens/cart/cart.dart';
 import 'package:ecommerce_flutter_bloc/presentation/screens/profile/profile.dart';
-import 'package:ecommerce_flutter_bloc/presentation/screens/settings/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-
 import 'home/home_imports.dart';
+import 'wishlist/wishlist.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -20,8 +19,8 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _pages = [
     HomeScreen(),
     CartScreen(),
+    WishListScreen(),
     ProfileScreen(),
-    SettingScreen(),
   ];
 
   @override
@@ -48,13 +47,13 @@ class _MainScreenState extends State<MainScreen> {
 
           /// Likes
           DotNavigationBarItem(
-            icon: const Icon(LineIcons.heart),
+            icon: const Icon(LineIcons.shoppingCart),
             selectedColor: Colors.pink,
           ),
 
           /// Search
           DotNavigationBarItem(
-            icon: const Icon(LineIcons.search),
+            icon: const Icon(LineIcons.heart),
             selectedColor: Colors.purple,
           ),
 
