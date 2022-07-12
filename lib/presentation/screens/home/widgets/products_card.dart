@@ -58,10 +58,18 @@ class ProductsCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: LineIcon(Icons.favorite_outline,
-                          color: Colors.orange),
+                    BlocBuilder<WishListBloc, WishListState>(
+                      builder: (context, state) {
+                        return IconButton(
+                          onPressed: () {
+                            context
+                                .read<WishListBloc>()
+                                .add(AddWishListProductEvent(products));
+                          },
+                          icon: LineIcon(Icons.favorite_outline,
+                              color: Colors.orange),
+                        );
+                      },
                     ),
                   ],
                 )
