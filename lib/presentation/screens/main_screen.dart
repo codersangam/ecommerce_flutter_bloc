@@ -1,8 +1,8 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
-import 'package:ecommerce_flutter_bloc/presentation/screens/cart/cart.dart';
 import 'package:ecommerce_flutter_bloc/presentation/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'cart/cart_imports.dart';
 import 'home/home_imports.dart';
 import 'wishlist/wishlist.dart';
 
