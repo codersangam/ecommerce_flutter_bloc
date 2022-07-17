@@ -24,15 +24,33 @@ class ProductsCard extends StatelessWidget {
                   height: 175,
                   width: MediaQuery.of(context).size.width,
                 ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: LineIcon(
-                      Icons.add,
-                      color: Colors.orange,
-                    ),
-                  ).glassMorphic(),
+                BlocBuilder<CartBloc, CartState>(
+                  builder: (context, state) {
+                    if (state is CartLoadingState) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (state is CartLoadedState) {
+                      return Align(
+                        alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          onPressed: () {
+                            context
+                                .read<CartBloc>()
+                                .add(CartProductAddEvent(products));
+                            VxToast.show(context, msg: "Added to cart");
+                          },
+                          icon: LineIcon(
+                            Icons.add,
+                            color: Colors.orange,
+                          ),
+                        ).glassMorphic(),
+                      );
+                    } else {
+                      return "Something went wrong".text.xl2.white.make();
+                    }
+                  },
                 ).p8(),
               ],
             ),
