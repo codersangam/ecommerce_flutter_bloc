@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'blocs/cart/bloc/cart_bloc.dart';
 import 'blocs/wishlist/bloc/wish_list_bloc.dart';
 import 'router/router_imports.gr.dart';
 
@@ -18,7 +19,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => WishListBloc()..add(StartWishListEvent()),
-        )
+        ),
+        BlocProvider(
+          create: (_) => CartBloc()..add(CartStartedEvent()),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Ecommerce Flutter Bloc',
