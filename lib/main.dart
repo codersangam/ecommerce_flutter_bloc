@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        title: 'Ecommerce Flutter Bloc',
+        title: 'Food Crunch',
         theme: ThemeData(
           fontFamily: GoogleFonts.outfit().fontFamily,
           primarySwatch: Colors.blue,
