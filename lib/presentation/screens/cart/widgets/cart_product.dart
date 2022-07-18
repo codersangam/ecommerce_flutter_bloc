@@ -1,9 +1,11 @@
 part of 'widgets_imports.dart';
 
 class CartProduct extends StatelessWidget {
-  const CartProduct({Key? key, required this.product}) : super(key: key);
+  const CartProduct({Key? key, required this.product, required this.quantity})
+      : super(key: key);
 
   final Product product;
+  final int quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -78,19 +80,35 @@ class CartProduct extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              LineIcons.minus,
-                              size: 16,
-                            )),
-                        "1".text.make(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              LineIcons.plus,
-                              size: 16,
-                            )),
+                        BlocBuilder<CartBloc, CartState>(
+                          builder: (context, state) {
+                            return IconButton(
+                                onPressed: () {
+                                  context.read<CartBloc>().add(
+                                        CartProductRemoveEvent(product),
+                                      );
+                                },
+                                icon: const Icon(
+                                  LineIcons.minus,
+                                  size: 16,
+                                ));
+                          },
+                        ),
+                        "$quantity".text.make(),
+                        BlocBuilder<CartBloc, CartState>(
+                          builder: (context, state) {
+                            return IconButton(
+                                onPressed: () {
+                                  context.read<CartBloc>().add(
+                                        CartProductAddEvent(product),
+                                      );
+                                },
+                                icon: const Icon(
+                                  LineIcons.plus,
+                                  size: 16,
+                                ));
+                          },
+                        ),
                       ],
                     ),
                   ),
