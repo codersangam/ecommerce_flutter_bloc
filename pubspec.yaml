@@ -43,6 +43,8 @@ dependencies:
   line_icons: ^2.0.1
   equatable: ^2.0.3
   smooth_page_indicator: ^1.0.0+2
+  firebase_core: ^1.19.2
+  cloud_firestore: ^3.3.0
 
 dev_dependencies:
   flutter_test:

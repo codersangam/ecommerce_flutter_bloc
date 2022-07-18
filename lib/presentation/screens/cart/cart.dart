@@ -60,9 +60,21 @@ class _CartScreenState extends State<CartScreen> {
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: state.cart.products.length,
+                      itemCount: state.cart
+                          .productQuantity(state.cart.products)
+                          .keys
+                          .length,
                       itemBuilder: (context, index) {
-                        return CartProduct(product: state.cart.products[index]);
+                        return CartProduct(
+                          product: state.cart
+                              .productQuantity(state.cart.products)
+                              .keys
+                              .elementAt(index),
+                          quantity: state.cart
+                              .productQuantity(state.cart.products)
+                              .values
+                              .elementAt(index),
+                        );
                       }),
                   Divider(
                     thickness: 3,

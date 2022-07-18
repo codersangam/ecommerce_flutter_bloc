@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "728572438414",
+    "project_id": "food-crunch-bloc",
+    "storage_bucket": "food-crunch-bloc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728572438414:android:03da083a3269d67a9c26df",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_flutter_bloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728572438414-2oo47etds6g9lqag4o94mvtm8h543e0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAObt0gkcazyKBerHHkNG1wp-j7jweprbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728572438414-2oo47etds6g9lqag4o94mvtm8h543e0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

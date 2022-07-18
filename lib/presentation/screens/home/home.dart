@@ -42,7 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        "Your Delivery Address".text.gray300.make(),
+                        "Your Delivery Address"
+                            .text
+                            .color(Colors.black.withOpacity(0.46))
+                            .make(),
                         "#27, Opp. KNS College, Bangalore, India"
                             .text
                             .bold
