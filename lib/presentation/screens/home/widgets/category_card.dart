@@ -6,6 +6,7 @@ class CategoryCard extends StatelessWidget {
   final Category categories;
   @override
   Widget build(BuildContext context) {
+    int value = int.parse(categories.colorName.toString());
     return InkWell(
       onTap: () {
         AutoRouter.of(context).push(CategoryScreenRoute(category: categories));
@@ -16,7 +17,7 @@ class CategoryCard extends StatelessWidget {
             categories.name!.text.bold.make().pOnly(top: 10, left: 15),
             Align(
               alignment: Alignment.centerRight,
-              child: Image.asset(
+              child: Image.network(
                 categories.imageUrl.toString(),
               ),
             ),
@@ -24,7 +25,7 @@ class CategoryCard extends StatelessWidget {
         ),
       )
           .make()
-          .backgroundColor(categories.colorName!.withOpacity(0.1))
+          .backgroundColor(Color(value).withOpacity(0.1))
           .cornerRadius(20)
           .wh(170, 100),
     );

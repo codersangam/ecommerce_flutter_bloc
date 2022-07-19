@@ -10,12 +10,13 @@ class CategoryScreen extends StatelessWidget {
     final List<Product> categoryProducts = Product.products
         .where((product) => product.category == category.name)
         .toList();
+    int value = int.parse(category.colorName.toString());
     return Scaffold(
       appBar: VxAppBar(
         elevation: 0.0,
         searchBar: true,
         centerTitle: true,
-        backgroundColor: category.colorName!.withOpacity(0.3),
+        backgroundColor: Color(value).withOpacity(0.3),
         title: '${category.name}'.text.make(),
       ),
       body: GridView.builder(

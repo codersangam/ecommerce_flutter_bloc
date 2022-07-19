@@ -75,9 +75,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               5.heightBox,
-              CategoryCarousel(
-                categories: Category.categories.map((e) => e).toList(),
-                // color: Colors.blue,
+              BlocBuilder<CategoryBloc, CategoryState>(
+                builder: (context, state) {
+                  if (state is CategoryLoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (state is CategoryLoadedState) {
+                    return CategoryCarousel(
+                      categories: state.category.map((e) => e).toList(),
+                      // color: Colors.blue,
+                    );
+                  } else {
+                    return "Something went wrong".text.make();
+                  }
+                },
               ),
               20.heightBox,
               Row(
