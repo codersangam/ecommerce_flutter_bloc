@@ -1,9 +1,11 @@
+import 'package:ecommerce_flutter_bloc/blocs/category/bloc/category_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'blocs/cart/bloc/cart_bloc.dart';
 import 'blocs/wishlist/bloc/wish_list_bloc.dart';
+import 'data/repositories/category/category_repository.dart';
 import 'router/router_imports.gr.dart';
 
 Future<void> main() async {
@@ -25,6 +27,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => CartBloc()..add(CartStartedEvent()),
+        ),
+        BlocProvider(
+          create: (_) => CategoryBloc(categoryRepository: CategoryRepository())
+            ..add(LoadCategoryEvent()),
         ),
       ],
       child: MaterialApp.router(
