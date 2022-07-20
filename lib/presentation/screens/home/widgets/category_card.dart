@@ -17,8 +17,8 @@ class CategoryCard extends StatelessWidget {
             categories.name!.text.bold.make().pOnly(top: 10, left: 15),
             Align(
               alignment: Alignment.centerRight,
-              child: Image.network(
-                categories.imageUrl.toString(),
+              child: CachedNetworkImage(
+                imageUrl: categories.imageUrl.toString(),
               ),
             ),
           ],

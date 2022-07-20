@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'blocs/cart/bloc/cart_bloc.dart';
+import 'blocs/product/bloc/product_bloc.dart';
 import 'blocs/wishlist/bloc/wish_list_bloc.dart';
 import 'data/repositories/category/category_repository.dart';
+import 'data/repositories/product/product_repository.dart';
 import 'router/router_imports.gr.dart';
 
 Future<void> main() async {
@@ -31,6 +33,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => CategoryBloc(categoryRepository: CategoryRepository())
             ..add(LoadCategoryEvent()),
+        ),
+        BlocProvider(
+          create: (_) => ProductBloc(productRepository: ProductRepository())
+            ..add(LoadProductEvent()),
         ),
       ],
       child: MaterialApp.router(

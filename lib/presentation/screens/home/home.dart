@@ -101,10 +101,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               5.heightBox,
-              ProductsCarousel(
-                products: Product.products
-                    .where((products) => products.isPopular)
-                    .toList(),
+              BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (state is ProductLoadedState) {
+                    return ProductsCarousel(
+                      products: state.product
+                          .where((products) => products.isPopular)
+                          .toList(),
+                    );
+                  } else {
+                    return "Something went wrong".text.make();
+                  }
+                },
               ),
               20.heightBox,
               Row(
@@ -115,10 +128,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               5.heightBox,
-              ProductsCarousel(
-                products: Product.products
-                    .where((products) => products.isRecommended)
-                    .toList(),
+              BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (state is ProductLoadedState) {
+                    return ProductsCarousel(
+                      products: state.product
+                          .where((products) => products.isRecommended)
+                          .toList(),
+                    );
+                  } else {
+                    return "Something went wrong".text.make();
+                  }
+                },
               ),
             ],
           ).pSymmetric(h: 15),
