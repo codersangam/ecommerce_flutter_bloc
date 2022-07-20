@@ -18,8 +18,8 @@ class ProductsCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Image.network(
-                  products.imageUrl.toString(),
+                CachedNetworkImage(
+                  imageUrl: products.imageUrl.toString(),
                   fit: BoxFit.cover,
                   height: 175,
                   width: MediaQuery.of(context).size.width,
