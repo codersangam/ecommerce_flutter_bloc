@@ -1,4 +1,6 @@
 import 'package:ecommerce_flutter_bloc/blocs/category/bloc/category_bloc.dart';
+import 'package:ecommerce_flutter_bloc/blocs/order/bloc/order_bloc.dart';
+import 'package:ecommerce_flutter_bloc/data/repositories/orders/orders_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +10,7 @@ import 'blocs/product/bloc/product_bloc.dart';
 import 'blocs/wishlist/bloc/wish_list_bloc.dart';
 import 'data/repositories/category/category_repository.dart';
 import 'data/repositories/product/product_repository.dart';
-import 'router/router_imports.gr.dart';
+import 'presentation/router/router_imports.gr.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,13 +40,17 @@ class MyApp extends StatelessWidget {
           create: (_) => ProductBloc(productRepository: ProductRepository())
             ..add(LoadProductEvent()),
         ),
+        BlocProvider(
+          create: (context) => OrderBloc(
+              cartBloc: context.read<CartBloc>(),
+              ordersRepository: OrdersRepository()),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Food Crunch',
         theme: ThemeData(
-          fontFamily: GoogleFonts.outfit().fontFamily,
-          primarySwatch: Colors.blue,
-        ),
+            fontFamily: GoogleFonts.outfit().fontFamily,
+            primarySwatch: Colors.blue),
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
       ),

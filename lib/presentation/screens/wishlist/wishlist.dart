@@ -20,7 +20,7 @@ class WishListScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is WishListLoadingState) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: Colors.orange),
             );
           }
           if (state is WishListLoadedState) {

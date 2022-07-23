@@ -10,13 +10,12 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           if (state is CartLoadingState) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: Colors.orange),
             );
           }
           if (state is CartLoadedState) {
@@ -26,7 +25,7 @@ class _CartScreenState extends State<CartScreen> {
                 children: [
                   Container(
                     height: MediaQuery.of(context).size.height / 6,
-                    width: width,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
                           colors: [Colors.orange, Colors.red]),
@@ -108,24 +107,11 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ).pSymmetric(h: 15),
                   20.heightBox,
-                  Container(
-                    height: 50,
-                    width: width,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                          colors: [Colors.orange, Colors.red]),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.orange.withOpacity(0.1),
-                          blurRadius: 10,
-                          spreadRadius: 10,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
-                    ),
-                    child: "Checkout".text.xl2.white.makeCentered(),
-                  ).pSymmetric(h: 15),
+                  GradientButton(
+                    onTap: () => AutoRouter.of(context)
+                        .push(const CheckoutScreenRoute()),
+                    title: "Checkout",
+                  )
                 ],
               ).pOnly(bottom: 100),
             );

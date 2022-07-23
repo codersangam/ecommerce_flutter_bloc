@@ -25,8 +25,8 @@ class _ProductScreenState extends State<ProductScreen> {
           children: [
             Stack(
               children: [
-                Image.network(
-                  widget.products.imageUrl,
+                CachedNetworkImage(
+                  imageUrl: widget.products.imageUrl,
                   fit: BoxFit.cover,
                   height: MediaQuery.of(context).size.height / 2.2,
                   width: MediaQuery.of(context).size.width,
@@ -139,7 +139,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     "2 Items".text.white.make(),
-                    "Rs ${widget.products.price}".text.white.xl2.make(),
+                    "\$ ${widget.products.price}".text.white.xl2.make(),
                     VxCircle(
                       radius: 50,
                       backgroundColor: Colors.black,

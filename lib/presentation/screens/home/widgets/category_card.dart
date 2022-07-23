@@ -18,6 +18,9 @@ class CategoryCard extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: CachedNetworkImage(
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    CircularProgressIndicator(
+                        color: Colors.orange, value: downloadProgress.progress),
                 imageUrl: categories.imageUrl.toString(),
               ),
             ),
