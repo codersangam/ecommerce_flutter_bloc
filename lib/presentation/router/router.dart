@@ -7,6 +7,7 @@ part of 'router_imports.dart';
     AdaptiveRoute(page: MainScreen),
     AdaptiveRoute(page: CategoryScreen),
     AdaptiveRoute(page: ProductScreen),
+    AdaptiveRoute(page: CheckoutScreen),
   ],
 )
 class $AppRouter {}

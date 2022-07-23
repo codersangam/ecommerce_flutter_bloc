@@ -12,6 +12,7 @@ class Cart extends Equatable {
   num get subTotal =>
       products.fold(0.0, (total, current) => total + num.parse(current.price));
   String get subTotalString => subTotal.toString();
+  String get totalString => subTotal.toString();
 
   Map productQuantity(products) {
     var quantity = {};

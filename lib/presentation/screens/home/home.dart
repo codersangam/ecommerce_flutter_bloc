@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, state) {
                   if (state is CategoryLoadingState) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(color: Colors.orange),
                     );
                   }
                   if (state is CategoryLoadedState) {
@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, state) {
                   if (state is ProductLoadingState) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(color: Colors.orange),
                     );
                   }
                   if (state is ProductLoadedState) {
@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, state) {
                   if (state is ProductLoadingState) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(color: Colors.orange),
                     );
                   }
                   if (state is ProductLoadedState) {

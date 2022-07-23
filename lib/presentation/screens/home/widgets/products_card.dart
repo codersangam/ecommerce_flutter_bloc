@@ -28,7 +28,7 @@ class ProductsCard extends StatelessWidget {
                   builder: (context, state) {
                     if (state is CartLoadingState) {
                       return const Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(color: Colors.orange),
                       );
                     }
                     if (state is CartLoadedState) {
