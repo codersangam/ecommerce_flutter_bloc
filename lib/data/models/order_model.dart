@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter_bloc/data/models/models.dart';
+import 'package:ecommerce_flutter_bloc/data/models/payment_methods_model.dart';
 import 'package:equatable/equatable.dart';
 
 class Orders extends Equatable {
@@ -12,18 +13,21 @@ class Orders extends Equatable {
   final List<Product>? products;
   final String? subTotal;
   final String? total;
+  final PaymentMethods? paymentMethods;
 
-  const Orders(
-      {required this.fullName,
-      required this.email,
-      required this.phoneNumber,
-      required this.address,
-      required this.city,
-      required this.country,
-      required this.zipCode,
-      required this.products,
-      required this.subTotal,
-      required this.total});
+  const Orders({
+    required this.fullName,
+    required this.email,
+    required this.phoneNumber,
+    required this.address,
+    required this.city,
+    required this.country,
+    required this.zipCode,
+    required this.products,
+    required this.subTotal,
+    required this.total,
+    required this.paymentMethods,
+  });
 
   @override
   List<Object?> get props => [
@@ -36,7 +40,8 @@ class Orders extends Equatable {
         zipCode,
         products,
         subTotal,
-        total
+        total,
+        paymentMethods,
       ];
 
   Map<String, Object> toDocument() {
@@ -54,6 +59,7 @@ class Orders extends Equatable {
       'products': products!.map((product) => product.name).toList(),
       'subTotal': subTotal!,
       'total': total!,
+      'paymentMethods': paymentMethods!.name,
     };
   }
 }

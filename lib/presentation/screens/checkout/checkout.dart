@@ -1,21 +1,15 @@
 part of 'checkout_imports.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({Key? key}) : super(key: key);
+  const CheckoutScreen({Key? key, required this.totalPrice}) : super(key: key);
+
+  final String totalPrice;
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
 }
 
-enum PaymentMethods {
-  cod,
-  paypal,
-  razorpay,
-  khalti,
-}
-
 class _CheckoutScreenState extends State<CheckoutScreen> {
-  var myPayment = PaymentMethods.cod;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,54 +157,70 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   20.heightBox,
                   "Payment Methods".text.bold.xl2.make(),
                   20.heightBox,
-                  RadioListTile(
-                    title: 'Cash on Delivery'.text.make(),
-                    value: PaymentMethods.cod,
-                    groupValue: myPayment,
-                    onChanged: (PaymentMethods? value) {
-                      setState(() {
-                        myPayment = value!;
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: 'Paypal'.text.make(),
-                    value: PaymentMethods.paypal,
-                    groupValue: myPayment,
-                    onChanged: (PaymentMethods? value) {
-                      setState(() {
-                        myPayment = value!;
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: 'Razor Pay'.text.make(),
-                    value: PaymentMethods.razorpay,
-                    groupValue: myPayment,
-                    onChanged: (PaymentMethods? value) {
-                      setState(() {
-                        myPayment = value!;
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: 'Khalti'.text.make(),
-                    value: PaymentMethods.khalti,
-                    groupValue: myPayment,
-                    onChanged: (PaymentMethods? value) {
-                      setState(() {
-                        myPayment = value!;
-                      });
+                  BlocBuilder<PaymentBloc, PaymentState>(
+                    builder: (context, state) {
+                      if (state is PaymentLoadingState) {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.orange,
+                          ),
+                        );
+                      }
+                      if (state is PaymentLoadedState) {
+                        return Column(
+                          children: [
+                            RadioListTile(
+                              title: 'Cash on Delivery'.text.make(),
+                              value: PaymentMethods.cod,
+                              groupValue: state.paymentMethods,
+                              onChanged: (PaymentMethods? value) {
+                                // setState(() {
+                                //   myPayment = value!;
+                                // });
+                                context.read<PaymentBloc>().add(
+                                    SelectPaymentMethodsEvent(
+                                        paymentMethods: value!));
+                              },
+                            ),
+                            RadioListTile(
+                              title: 'Razor Pay'.text.make(),
+                              value: PaymentMethods.razorpay,
+                              groupValue: state.paymentMethods,
+                              onChanged: (PaymentMethods? value) {
+                                // setState(() {
+                                //   myPayment = value!;
+                                // });
+                                context.read<PaymentBloc>().add(
+                                    SelectPaymentMethodsEvent(
+                                        paymentMethods: value!));
+                              },
+                            ),
+                          ],
+                        );
+                      } else {
+                        return "Something went wrong".text.make();
+                      }
                     },
                   ),
                   30.heightBox,
+                  widget.totalPrice.text.make(),
                   GradientButton(
                           onTap: () {
-                            context.read<OrderBloc>().add(
-                                  ConfirmOrdersEvent(
+                            if (state.paymentMethods ==
+                                PaymentMethods.razorpay) {
+                              RazorPaymentService razorPaymentService =
+                                  RazorPaymentService();
+                              razorPaymentService.initPaymentGateway(
+                                  context, state);
+                              razorPaymentService.getPayment(
+                                  context, widget.totalPrice);
+                            } else {
+                              context.read<OrderBloc>().add(ConfirmOrdersEvent(
                                     orders: state.orders,
-                                  ),
-                                );
+                                  ));
+                              AutoRouter.of(context)
+                                  .push(const OrdersScreenRoute());
+                            }
                           },
                           title: "Order")
                       .pOnly(bottom: 100)
