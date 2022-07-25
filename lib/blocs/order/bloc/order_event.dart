@@ -16,6 +16,7 @@ class UpdateOrdersEvent extends OrderEvent {
   final String? country;
   final String? zipCode;
   final Cart? cart;
+  final PaymentMethods? paymentMethods;
 
   const UpdateOrdersEvent({
     this.fullName,
@@ -26,11 +27,21 @@ class UpdateOrdersEvent extends OrderEvent {
     this.country,
     this.zipCode,
     this.cart,
+    this.paymentMethods,
   });
 
   @override
-  List<Object?> get props =>
-      [fullName, email, phoneNumber, address, city, country, zipCode, cart];
+  List<Object?> get props => [
+        fullName,
+        email,
+        phoneNumber,
+        address,
+        city,
+        country,
+        zipCode,
+        cart,
+        paymentMethods
+      ];
 }
 
 class ConfirmOrdersEvent extends OrderEvent {

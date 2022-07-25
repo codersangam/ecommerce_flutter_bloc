@@ -23,19 +23,21 @@ class OrderLoadedState extends OrderState {
   final String? subTotal;
   final String? total;
   final Orders orders;
+  final PaymentMethods paymentMethods;
 
-  OrderLoadedState(
-      {this.fullName,
-      this.email,
-      this.phoneNumber,
-      this.address,
-      this.city,
-      this.country,
-      this.zipCode,
-      this.products,
-      this.subTotal,
-      this.total})
-      : orders = Orders(
+  OrderLoadedState({
+    this.fullName,
+    this.email,
+    this.phoneNumber,
+    this.address,
+    this.city,
+    this.country,
+    this.zipCode,
+    this.products,
+    this.subTotal,
+    this.total,
+    this.paymentMethods = PaymentMethods.razorpay,
+  }) : orders = Orders(
           fullName: fullName,
           email: email,
           phoneNumber: phoneNumber,
@@ -46,6 +48,7 @@ class OrderLoadedState extends OrderState {
           products: products,
           subTotal: subTotal,
           total: total,
+          paymentMethods: paymentMethods,
         );
 
   @override
@@ -59,6 +62,7 @@ class OrderLoadedState extends OrderState {
         zipCode,
         products,
         subTotal,
-        total
+        total,
+        paymentMethods,
       ];
 }

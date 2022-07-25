@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter_bloc/presentation/screens/checkout/checkout_im
 import 'package:ecommerce_flutter_bloc/presentation/screens/home/category/category_imports.dart';
 import 'package:ecommerce_flutter_bloc/presentation/screens/home/product/product_imports.dart';
 import 'package:ecommerce_flutter_bloc/presentation/screens/main_screen.dart';
+import 'package:ecommerce_flutter_bloc/presentation/screens/orders/orders_imports.dart';
 import 'package:ecommerce_flutter_bloc/presentation/screens/splash/splash_imports.dart';
 
 part 'router.dart';

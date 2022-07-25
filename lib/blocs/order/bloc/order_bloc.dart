@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_flutter_bloc/blocs/cart/bloc/cart_bloc.dart';
+import 'package:ecommerce_flutter_bloc/blocs/payment/bloc/payment_bloc.dart';
+import 'package:ecommerce_flutter_bloc/data/models/payment_methods_model.dart';
 import 'package:ecommerce_flutter_bloc/data/repositories/orders/orders_repository.dart';
 import 'package:equatable/equatable.dart';
 
@@ -12,12 +14,17 @@ part 'order_state.dart';
 
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   final CartBloc _cartBloc;
+  final PaymentBloc _paymentBloc;
   final OrdersRepository _ordersRepository;
   StreamSubscription? _ordersSubscription;
+  StreamSubscription? _paymentSubscription;
 
   OrderBloc(
-      {required CartBloc cartBloc, required OrdersRepository ordersRepository})
+      {required CartBloc cartBloc,
+      required OrdersRepository ordersRepository,
+      required PaymentBloc paymentBloc})
       : _cartBloc = cartBloc,
+        _paymentBloc = paymentBloc,
         _ordersRepository = ordersRepository,
         super(cartBloc.state is CartLoadedState
             ? OrderLoadedState(
@@ -43,6 +50,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           products: event.cart?.products ?? state.products,
           total: event.cart?.totalString ?? state.total,
           subTotal: event.cart?.subTotalString ?? state.subTotal,
+          paymentMethods: event.paymentMethods ?? state.paymentMethods,
         ));
       }
     });
@@ -64,5 +72,20 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         ));
       }
     });
+
+    _paymentSubscription = _paymentBloc.stream.listen((state) {
+      if (state is PaymentLoadedState) {
+        add(UpdateOrdersEvent(
+          paymentMethods: state.paymentMethods,
+        ));
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _ordersSubscription?.cancel();
+    _paymentSubscription?.cancel();
+    return super.close();
   }
 }

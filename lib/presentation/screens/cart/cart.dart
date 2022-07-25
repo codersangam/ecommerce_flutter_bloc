@@ -108,8 +108,10 @@ class _CartScreenState extends State<CartScreen> {
                   ).pSymmetric(h: 15),
                   20.heightBox,
                   GradientButton(
-                    onTap: () => AutoRouter.of(context)
-                        .push(const CheckoutScreenRoute()),
+                    onTap: () =>
+                        AutoRouter.of(context).push(CheckoutScreenRoute(
+                      totalPrice: state.cart.totalString,
+                    )),
                     title: "Checkout",
                   )
                 ],

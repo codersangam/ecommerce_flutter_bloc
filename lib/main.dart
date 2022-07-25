@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter_bloc/blocs/category/bloc/category_bloc.dart';
 import 'package:ecommerce_flutter_bloc/blocs/order/bloc/order_bloc.dart';
+import 'package:ecommerce_flutter_bloc/blocs/payment/bloc/payment_bloc.dart';
 import 'package:ecommerce_flutter_bloc/data/repositories/orders/orders_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
           create: (_) => WishListBloc()..add(StartWishListEvent()),
         ),
         BlocProvider(
+          create: (_) => PaymentBloc()..add(LoadPaymentMethodsEvent()),
+        ),
+        BlocProvider(
           create: (_) => CartBloc()..add(CartStartedEvent()),
         ),
         BlocProvider(
@@ -43,6 +47,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => OrderBloc(
               cartBloc: context.read<CartBloc>(),
+              paymentBloc: context.read<PaymentBloc>(),
               ordersRepository: OrdersRepository()),
         ),
       ],
