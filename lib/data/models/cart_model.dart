@@ -9,10 +9,10 @@ class Cart extends Equatable {
 
   const Cart({this.products = const <Product>[]});
 
-  num get subTotal =>
-      products.fold(0.0, (total, current) => total + num.parse(current.price));
-  String get subTotalString => subTotal.toString();
-  String get totalString => subTotal.toString();
+  double get subTotal =>
+      products.fold(0.0, (total, current) => total + current.price);
+  double get subTotalString => subTotal;
+  double get totalString => subTotal;
 
   Map productQuantity(products) {
     var quantity = {};
