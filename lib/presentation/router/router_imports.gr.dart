@@ -143,7 +143,7 @@ class ProductScreenRouteArgs {
 /// generated route for
 /// [_i5.CheckoutScreen]
 class CheckoutScreenRoute extends _i7.PageRouteInfo<CheckoutScreenRouteArgs> {
-  CheckoutScreenRoute({_i8.Key? key, required String totalPrice})
+  CheckoutScreenRoute({_i8.Key? key, required double totalPrice})
       : super(CheckoutScreenRoute.name,
             path: '/checkout-screen',
             args: CheckoutScreenRouteArgs(key: key, totalPrice: totalPrice));
@@ -156,7 +156,7 @@ class CheckoutScreenRouteArgs {
 
   final _i8.Key? key;
 
-  final String totalPrice;
+  final double totalPrice;
 
   @override
   String toString() {

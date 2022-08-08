@@ -26,103 +26,100 @@ class CartProduct extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 120,
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                image: NetworkImage(product.imageUrl),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          10.widthBox,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
+              Container(
+                width: 120,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(product.imageUrl),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              10.widthBox,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   product.name.text.bold.xl.make(),
-                  BlocBuilder<CartBloc, CartState>(
-                    builder: (context, state) {
-                      return IconButton(
-                        onPressed: () {
-                          context.read<CartBloc>().add(
-                                CartProductRemoveEvent(product),
-                              );
-                        },
-                        icon: const Icon(LineIcons.trash),
-                      );
-                    },
-                  ),
-                ],
-              ),
-              5.heightBox,
-              product.category.text
-                  .color(Colors.black.withOpacity(0.46))
-                  .make(),
-              5.heightBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 110,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffF6F5F9),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        BlocBuilder<CartBloc, CartState>(
-                          builder: (context, state) {
-                            return IconButton(
-                                onPressed: () {
-                                  context.read<CartBloc>().add(
-                                        CartProductRemoveEvent(product),
-                                      );
-                                },
-                                icon: const Icon(
-                                  LineIcons.minus,
-                                  size: 16,
-                                ));
-                          },
-                        ),
-                        "$quantity".text.make(),
-                        BlocBuilder<CartBloc, CartState>(
-                          builder: (context, state) {
-                            return IconButton(
-                                onPressed: () {
-                                  context.read<CartBloc>().add(
-                                        CartProductAddEvent(product),
-                                      );
-                                },
-                                icon: const Icon(
-                                  LineIcons.plus,
-                                  size: 16,
-                                ));
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  10.widthBox,
-                  "\$ ${product.price}"
-                      .text
-                      .bold
-                      .color(Colors.orange)
-                      .xl
+                  product.category.text
+                      .color(Colors.black.withOpacity(0.46))
                       .make(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 112,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0xffF6F5F9),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            BlocBuilder<CartBloc, CartState>(
+                              builder: (context, state) {
+                                return IconButton(
+                                    onPressed: () {
+                                      context.read<CartBloc>().add(
+                                            CartProductRemoveEvent(product),
+                                          );
+                                    },
+                                    icon: const Icon(
+                                      LineIcons.minus,
+                                      size: 16,
+                                    ));
+                              },
+                            ),
+                            "$quantity".text.make(),
+                            BlocBuilder<CartBloc, CartState>(
+                              builder: (context, state) {
+                                return IconButton(
+                                    onPressed: () {
+                                      context.read<CartBloc>().add(
+                                            CartProductAddEvent(product),
+                                          );
+                                    },
+                                    icon: const Icon(
+                                      LineIcons.plus,
+                                      size: 16,
+                                    ));
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
-              ),
+              ).pSymmetric(v: 10),
             ],
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return IconButton(
+                    onPressed: () {
+                      context.read<CartBloc>().add(
+                            CartProductRemoveEvent(product),
+                          );
+                    },
+                    icon: const Icon(LineIcons.trash),
+                  );
+                },
+              ),
+              "\$ ${product.price}".text.bold.color(Colors.orange).xl.make(),
+            ],
+          ).pSymmetric(v: 10),
         ],
       ).pSymmetric(h: 10),
     ).pSymmetric(h: 15);

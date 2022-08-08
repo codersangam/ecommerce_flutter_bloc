@@ -3,7 +3,7 @@ part of 'checkout_imports.dart';
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({Key? key, required this.totalPrice}) : super(key: key);
 
-  final String totalPrice;
+  final double totalPrice;
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();

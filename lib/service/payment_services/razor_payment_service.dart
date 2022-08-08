@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:auto_route/auto_route.dart';
 import 'package:ecommerce_flutter_bloc/blocs/order/bloc/order_bloc.dart';
 import 'package:ecommerce_flutter_bloc/presentation/router/router_imports.gr.dart';
