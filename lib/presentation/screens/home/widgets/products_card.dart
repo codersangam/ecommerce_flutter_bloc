@@ -69,7 +69,7 @@ class ProductsCard extends StatelessWidget {
                             fontWeight: FontWeight.bold, color: Colors.orange),
                         children: [
                           TextSpan(
-                              text: products.price,
+                              text: products.price.toString(),
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black)),

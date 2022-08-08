@@ -12,6 +12,7 @@ class OrderInitialState extends OrderState {}
 class OrderLoadingState extends OrderState {}
 
 class OrderLoadedState extends OrderState {
+  final String? id;
   final String? fullName;
   final String? email;
   final String? phoneNumber;
@@ -20,12 +21,13 @@ class OrderLoadedState extends OrderState {
   final String? country;
   final String? zipCode;
   final List<Product>? products;
-  final String? subTotal;
-  final String? total;
+  final double? subTotal;
+  final double? total;
   final Orders orders;
   final PaymentMethods paymentMethods;
 
   OrderLoadedState({
+    this.id,
     this.fullName,
     this.email,
     this.phoneNumber,
@@ -38,6 +40,7 @@ class OrderLoadedState extends OrderState {
     this.total,
     this.paymentMethods = PaymentMethods.razorpay,
   }) : orders = Orders(
+          id: id,
           fullName: fullName,
           email: email,
           phoneNumber: phoneNumber,
