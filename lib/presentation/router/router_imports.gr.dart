@@ -38,7 +38,7 @@ class AppRouter extends _i7.RootStackRouter {
     },
     MainScreenRoute.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i2.MainScreen());
+          routeData: routeData, child: const _i2.MainView());
     },
     CategoryScreenRoute.name: (routeData) {
       final args = routeData.argsAs<CategoryScreenRouteArgs>();
